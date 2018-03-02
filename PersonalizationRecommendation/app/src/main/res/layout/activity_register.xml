@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.administrator.personalizationrecommendation.Register">
+
+
+
+    <TextView
+        android:text="账号"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/RegisterBack"
+        android:layout_marginLeft="30dp" />
+
+
+
+    <TextView
+        android:text="性别"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/textView10"
+        android:layout_alignLeft="@+id/textView10"
+        />
+
+
+    <TextView
+        android:text="年龄"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView12"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/textView11"
+        android:layout_alignLeft="@+id/textView11"/>
+
+    <TextView
+        android:text="身份"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignLeft="@+id/textView12"/>
+
+    <TextView
+        android:text="密码"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/textView13"/>
+
+    <TextView
+        android:text="确认密码"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView15"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/textView14"
+        android:layout_marginLeft="18dp"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/registerAccount"
+        android:layout_alignBaseline="@+id/textView10"
+        android:layout_toRightOf="@+id/textView10"
+        android:layout_marginLeft="20dp"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignTop="@+id/textView11"
+        android:layout_toRightOf="@+id/textView11"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/gender">
+        <RadioButton
+            android:text="男"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/male"
+            android:textSize="18sp"
+            android:checked="true" />
+        <RadioButton
+            android:text="女"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/female"
+            android:textSize="18sp"/>
+    </RadioGroup>
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/registerAge"
+        android:layout_alignBaseline="@+id/textView12"
+        android:layout_toRightOf="@+id/textView12"
+        android:layout_marginLeft="20dp"/>
+
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_toRightOf="@+id/textView13"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/status">
+        <RadioButton
+            android:text="学生"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/student"
+            android:textSize="18sp"
+            android:checked="true" />
+        <RadioButton
+            android:text="上班族"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/working"
+            android:textSize="18sp"/>
+        <RadioButton
+            android:text="其他"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/other"
+            android:textSize="18sp"/>
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/settingOldPassword"
+        android:layout_alignBaseline="@+id/textView14"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_marginLeft="20dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/registerSurePassword"
+        android:layout_alignBaseline="@+id/textView15"
+        android:layout_toRightOf="@+id/textView15"
+        android:layout_marginLeft="5dp"/>
+
+
+    <Button
+        android:text="确定注册"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView15"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/sureRegister"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+
+    <Button
+        android:text="返回"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterBack"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="账号注册"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView16"
+        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Title"
+        android:textSize="24sp"
+        android:layout_marginTop="40dp"
+        android:textColor="#de2335ac"
+        android:layout_below="@+id/RegisterBack"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

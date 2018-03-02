@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context="com.example.administrator.personalizationrecommendation.MainActivity">
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:visibility="invisible"
+        android:id="@+id/allPhoneInfo" >
+
+    </WebView>
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:visibility="invisible"
+        android:id="@+id/webRecommend" >
+    </WebView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:id="@+id/aboutMe">
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp"
+            android:id="@+id/webMe" >
+        </WebView>
+
+        <Button
+            android:text="设置"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setting"
+            android:textSize="18sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            style="@android:style/Widget.Material.Light.Button.Inset"
+            android:elevation="0dp" />
+
+
+
+
+
+
+
+
+
+
+
+
+        <TextView
+            android:text="账号："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="11dp"
+            android:id="@+id/textView4"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="?android:attr/colorControlActivated" />
+
+        <TextView
+            android:text="test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView4"
+            android:layout_toRightOf="@+id/textView4"
+            android:id="@+id/showAccount"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+        <TextView
+            android:text="性别："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="11dp"
+            android:id="@+id/textView5"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="?android:attr/colorControlActivated" />
+
+        <TextView
+            android:text="test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView5"
+            android:layout_toRightOf="@+id/textView5"
+            android:id="@+id/showGender"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+        <TextView
+            android:text="身份："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_below="@+id/textView5"
+            android:layout_marginTop="11dp"
+            android:id="@+id/textView6"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="?android:attr/colorControlActivated" />
+
+        <TextView
+            android:text="test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView6"
+            android:layout_toRightOf="@+id/textView6"
+            android:id="@+id/showStatus"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+        <TextView
+            android:text="年龄："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textView5"
+            android:layout_below="@+id/textView4"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="11dp"
+            android:id="@+id/textView7"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="?android:attr/colorControlActivated" />
+
+        <TextView
+            android:text="test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView7"
+            android:layout_toRightOf="@+id/textView7"
+            android:id="@+id/showAge"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginTop="120dp"-->
+                <!--android:gravity="center"-->
+                <!--android:background="#5bc0de"-->
+                <!--android:text="我的收藏"-->
+                <!--android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"-->
+                <!--android:textSize="30sp"-->
+                <!--android:fontFamily="sans-serif" />-->
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+
+        <ToggleButton
+            android:textOn="all"
+            android:textOff="all"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:id="@+id/all"/>
+            <!--style="@android:style/Widget.Button.Toggle" />-->
+
+        <ToggleButton
+            android:textOn="recommend"
+            android:textOff="recommend"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:id="@+id/recommend"/>
+            <!--style="@android:style/Widget.Button.Toggle" />-->
+
+        <ToggleButton
+            android:textOn="me"
+            android:textOff="me"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:id="@+id/me"
+            android:layout_weight="1"
+            android:checked="true"/>
+            <!--style="@android:style/Widget.Button.Toggle" />-->
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
