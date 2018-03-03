@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PersonalizationRecommendation.iml" filepath="$PROJECT_DIR$/PersonalizationRecommendation.iml" />
+      <module fileurl="file://C:\Code\andriod\phone-recommend\PersonalizationRecommendation\PersonalizationRecommendation.iml" filepath="C:\Code\andriod\phone-recommend\PersonalizationRecommendation\PersonalizationRecommendation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Code\andriod\phone-recommend\PersonalizationRecommendation\app\app.iml" filepath="C:\Code\andriod\phone-recommend\PersonalizationRecommendation\app\app.iml" />
     </modules>
   </component>
 </project>
