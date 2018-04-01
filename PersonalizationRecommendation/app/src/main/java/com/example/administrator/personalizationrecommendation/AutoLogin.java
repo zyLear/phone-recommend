@@ -17,6 +17,7 @@ public class AutoLogin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SystemApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_auto_login);
         judge();
     }

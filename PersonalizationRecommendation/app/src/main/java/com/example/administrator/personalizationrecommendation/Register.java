@@ -1,5 +1,6 @@
 package com.example.administrator.personalizationrecommendation;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ public class Register extends AppCompatActivity {
     private String genderText = "male";
     private String statusText = "student";
     private String myIP=MainActivity.ip;
+    private Button back;
     private Handler myHandler = new Handler() {
         @Override
         public void handleMessage(Message message) {
@@ -36,9 +39,11 @@ public class Register extends AppCompatActivity {
     };
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SystemApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_register);
         account = (EditText) findViewById(R.id.registerAccount);
         password = (EditText) findViewById(R.id.settingOldPassword);
@@ -46,7 +51,7 @@ public class Register extends AppCompatActivity {
         age = (EditText) findViewById(R.id.registerAge);
         gender = (RadioGroup) findViewById(R.id.gender);
         status = (RadioGroup) findViewById(R.id.status);
-
+        back = (Button) findViewById(R.id.RegisterBack);
 
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -61,7 +66,7 @@ public class Register extends AppCompatActivity {
                     default:
                         break;
                 }
-                Toast.makeText(Register.this, genderText, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(Register.this, genderText, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -81,7 +86,7 @@ public class Register extends AppCompatActivity {
                     default:
                         break;
                 }
-                Toast.makeText(Register.this, statusText, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(Register.this, statusText, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -134,6 +139,18 @@ public class Register extends AppCompatActivity {
                             }
                         }).start();
                     }
+                }
+                return false;
+            }
+        });
+
+        back.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP
+                        && event.getX() > 0 && event.getX() < back.getWidth()
+                        && event.getY() > 0 && event.getY() < back.getHeight()) {
+                    Register.this.finish();
                 }
                 return false;
             }

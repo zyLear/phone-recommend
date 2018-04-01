@@ -50,6 +50,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SystemApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_login);
 
 

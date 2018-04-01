@@ -63,6 +63,7 @@ public class Preference extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SystemApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_preference);
         brand = (SeekBar) findViewById(R.id.brand);
         price = (SeekBar) findViewById(R.id.price);

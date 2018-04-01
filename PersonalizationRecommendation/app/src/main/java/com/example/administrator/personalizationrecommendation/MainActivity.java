@@ -1,5 +1,6 @@
 package com.example.administrator.personalizationrecommendation;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -33,7 +34,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    static public String ip="192.168.253.1:12000";//"192.168.0.107:12000";
+    public static final String ip = "172.24.80.1:12000";//"192.168.0.107:12000";  192.168.253.1
     private WebView allPhoneInfo;
     private WebView webRecommend;
     private WebView peopleLike;
@@ -48,36 +49,47 @@ public class MainActivity extends AppCompatActivity {
     private TextView status;
     private TextView gender;
 
-    private String myIP=ip;
-    public Handler myHandler = new Handler(){
+    private String myIP = ip;
+    @SuppressLint("HandlerLeak")
+    public Handler myHandler = new Handler() {
         @Override
         public void handleMessage(Message message) {
             Toast.makeText(getApplicationContext(), message.getData().getString("msg"), Toast.LENGTH_SHORT).show();
         }
     };
-    private Handler textViewHandler = new Handler(){
+    @SuppressLint("HandlerLeak")
+    private Handler textViewHandler = new Handler() {
         @Override
         public void handleMessage(Message message) {
             try {
-                JSONObject jsonObject =new JSONObject(message.getData().getString("msg"));
+                JSONObject jsonObject = new JSONObject(message.getData().getString("msg"));
                 account.setText(jsonObject.getString("account"));
                 age.setText(jsonObject.getString("age"));
                 switch (jsonObject.getString("gender")) {
-                    case "male":gender.setText("男");break;
-                    case "female":gender.setText("女");break;
+                    case "male":
+                        gender.setText("男");
+                        break;
+                    case "female":
+                        gender.setText("女");
+                        break;
                 }
                 switch (jsonObject.getString("status")) {
-                    case "student":status.setText("学生");break;
-                    case "working":status.setText("上班族");break;
-                    case "other":status.setText("其他");break;
+                    case "student":
+                        status.setText("学生");
+                        break;
+                    case "working":
+                        status.setText("上班族");
+                        break;
+                    case "other":
+                        status.setText("其他");
+                        break;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(),"出错了！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "出错了！", Toast.LENGTH_SHORT).show();
             }
         }
     };
-
 
 
     /**
@@ -85,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
 //    private GoogleApiClient client;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SystemApplication.getInstance().addActivity(this);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
@@ -102,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         me = (ToggleButton) findViewById(R.id.me);
         recommend = (ToggleButton) findViewById(R.id.recommend);
         aboutMe = (RelativeLayout) findViewById(R.id.aboutMe);
-        setting=(Button)findViewById(R.id.setting);
+        setting = (Button) findViewById(R.id.setting);
 
         account = (TextView) findViewById(R.id.showAccount);
         age = (TextView) findViewById(R.id.showAge);
@@ -110,13 +122,9 @@ public class MainActivity extends AppCompatActivity {
         gender = (TextView) findViewById(R.id.showGender);
 
 
-
-
         webViewInit();
         initButtonEvent();
     }
-
-
 
 
     private void webViewInit() {
@@ -132,10 +140,10 @@ public class MainActivity extends AppCompatActivity {
 //                return true;
 //                view.loadUrl(url);
 //                return true;
-                if(url.startsWith("http://"+myIP) ) {
+                if (url.startsWith("http://" + myIP)) {
                     view.loadUrl(url);
                     return true;
-                }else{
+                } else {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
                     return true;
@@ -147,10 +155,9 @@ public class MainActivity extends AppCompatActivity {
                 //网页加载时调用
             }
         });
-        allPhoneInfo.loadUrl("http://"+myIP+"/Project/show_phone_info.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
+        allPhoneInfo.loadUrl("http://" + myIP + "/Project/show_phone_info.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
         allPhoneInfo.setHorizontalScrollBarEnabled(false);
         allPhoneInfo.setWebChromeClient(new WebChromeClient());
-
 
 
         settings = webRecommend.getSettings();
@@ -158,10 +165,10 @@ public class MainActivity extends AppCompatActivity {
         webRecommend.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if(url.startsWith("http://"+myIP) ) {
+                if (url.startsWith("http://" + myIP)) {
                     view.loadUrl(url);
                     return true;
-                }else{
+                } else {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
                     return true;
@@ -174,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         try {
-            webRecommend.loadUrl("http://"+myIP+"/Project/recommend.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
+            webRecommend.loadUrl("http://" + myIP + "/Project/recommend.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -186,10 +193,10 @@ public class MainActivity extends AppCompatActivity {
         peopleLike.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if(url.startsWith("http://"+myIP) ) {
+                if (url.startsWith("http://" + myIP)) {
                     view.loadUrl(url);
                     return true;
-                }else{
+                } else {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
                     return true;
@@ -202,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         try {
-            peopleLike.loadUrl("http://"+myIP+"/Project/people_like.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
+            peopleLike.loadUrl("http://" + myIP + "/Project/people_like.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -214,17 +221,17 @@ public class MainActivity extends AppCompatActivity {
         all.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_UP
-                            && event.getX()> 0 &&event.getX()<all.getWidth()
-                            && event.getY()> 0 &&event.getY()<all.getHeight()) {
-                        allPhoneInfo.setVisibility(View.VISIBLE);
-                        webRecommend.setVisibility(View.INVISIBLE);
-                        aboutMe.setVisibility(View.INVISIBLE);
-                        if (all.isChecked()) {
-                            all.toggle();
-                        }
-                        recommend.setChecked(false);
-                        me.setChecked(false);
+                if (event.getAction() == MotionEvent.ACTION_UP
+                        && event.getX() > 0 && event.getX() < all.getWidth()
+                        && event.getY() > 0 && event.getY() < all.getHeight()) {
+                    allPhoneInfo.setVisibility(View.VISIBLE);
+                    webRecommend.setVisibility(View.INVISIBLE);
+                    aboutMe.setVisibility(View.INVISIBLE);
+                    if (all.isChecked()) {
+                        all.toggle();
+                    }
+                    recommend.setChecked(false);
+                    me.setChecked(false);
                 }
                 return false;
             }
@@ -234,8 +241,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP
-                        && event.getX()> 0 &&event.getX()< recommend.getWidth()
-                        && event.getY()> 0 &&event.getY()< recommend.getHeight()) {
+                        && event.getX() > 0 && event.getX() < recommend.getWidth()
+                        && event.getY() > 0 && event.getY() < recommend.getHeight()) {
                     allPhoneInfo.setVisibility(View.INVISIBLE);
                     webRecommend.setVisibility(View.VISIBLE);
                     aboutMe.setVisibility(View.INVISIBLE);
@@ -254,8 +261,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_UP
-                        && event.getX()> 0 &&event.getX()< me.getWidth()
-                        && event.getY()> 0 &&event.getY()< me.getHeight()) {
+                        && event.getX() > 0 && event.getX() < me.getWidth()
+                        && event.getY() > 0 && event.getY() < me.getHeight()) {
                     allPhoneInfo.setVisibility(View.INVISIBLE);
                     webRecommend.setVisibility(View.INVISIBLE);
                     aboutMe.setVisibility(View.VISIBLE);
@@ -267,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
                     try {
 //                        webRecommend.loadUrl("http://"+myIP+"/Project/recommend.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
-                        peopleLike.loadUrl("http://"+myIP+"/Project/people_like.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
+                        peopleLike.loadUrl("http://" + myIP + "/Project/people_like.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -281,8 +288,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP
-                        && event.getX()> 0 &&event.getX()< setting.getWidth()
-                        && event.getY()> 0 &&event.getY()< setting.getHeight()) {
+                        && event.getX() > 0 && event.getX() < setting.getWidth()
+                        && event.getY() > 0 && event.getY() < setting.getHeight()) {
                     Intent intent = new Intent(MainActivity.this, Setting.class);
                     startActivity(intent);
                 }
@@ -293,48 +300,54 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 //        if (keyCode == KeyEvent.KEYCODE_BACK /*&& allPhoneInfo.canGoBack()*/) {
 //            allPhoneInfo.goBack();// 返回前一个页面
 //            return true;
 //        }
-//        return super.onKeyDown(keyCode, event);
-//    }
+        // return super.onKeyDown(keyCode, event);
+        return true;
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
         getPersonalInfo();
-       // Toast.makeText(this, "返回了返回了", Toast.LENGTH_LONG).show();
+        try {
+            webRecommend.loadUrl("http://" + myIP + "/Project/recommend.do?peopleId=" + Integer.parseInt(getSharePreferencesValue("currentAccount")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Toast.makeText(this, "返回了返回了", Toast.LENGTH_LONG).show();
     }
 
     private String getSharePreferencesValue(String key) {
         SharedPreferences sharedPreferences = getSharedPreferences("myAccount", MODE_PRIVATE);
-        return sharedPreferences.getString(key,"none!");
+        return sharedPreferences.getString(key, "none!");
     }
 
-    private void setSharedPreferencesValue(String account,String password) {
+    private void setSharedPreferencesValue(String account, String password) {
         SharedPreferences sharedPreferences = getSharedPreferences("myAccount", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("account",account);
+        editor.putString("account", account);
         editor.putString("password", password);
         editor.commit();
     }
 
 
     private void sendMessageToUI(String string) {
-        Bundle bundle=new Bundle();
-        bundle.putString("msg",string);
-        Message message=new Message();
+        Bundle bundle = new Bundle();
+        bundle.putString("msg", string);
+        Message message = new Message();
         message.setData(bundle);
         myHandler.sendMessage(message);
     }
 
     private void showPersonalInfo(String string) {
-        Bundle bundle=new Bundle();
-        bundle.putString("msg",string);
-        Message message=new Message();
+        Bundle bundle = new Bundle();
+        bundle.putString("msg", string);
+        Message message = new Message();
         message.setData(bundle);
         textViewHandler.sendMessage(message);
     }
@@ -346,13 +359,13 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     String currentAccount = getSharePreferencesValue("currentAccount");
-                    URL url = new URL("http://"+myIP+"/Project/getPersonalInfo.do?account="+currentAccount);
+                    URL url = new URL("http://" + myIP + "/Project/getPersonalInfo.do?account=" + currentAccount);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     int code = httpURLConnection.getResponseCode();
                     if (code == 200) {
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                        String result="";
-                        result=bufferedReader.readLine();
+                        String result = "";
+                        result = bufferedReader.readLine();
                         bufferedReader.close();
 //                                System.out.println(result);
                         if (!"error".equals(result)) {
@@ -372,7 +385,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
     }
-
 
 
     /**
